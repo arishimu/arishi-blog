@@ -389,3 +389,5 @@ pacman -S fuzzel mako waybar xdg-desktop-portal-gtk xdg-desktop-portal-gnome ala
 ```bash
 niri-session
 ```
+
+<!-- code, tmux, docker -->

@@ -9,8 +9,6 @@ category: 'Number Theory'
 draft: false
 ---
 
-# 初等数论
-
 :::caution[前言]
 本文是我自学数论的笔记，有些尾巴 (二次互反律、原根、离散对数、抽象代数补充) 还没收好，但暂时不想继续写了．
 
@@ -29,11 +27,13 @@ draft: false
 
 :::warning[为什么这个结论你没给证明？]
 可能原因是：
+
 1. 结论过于显然．
 2. 证明思路比较直接．
 3. 证明过程比较繁琐，缺少美感．
 4. 存在运用抽象理论的简洁证明，但个人的水平有限．
 5. 我比较懒，看心情．
+
 :::
 
 :::warning[$\mathbb N$ 是什么？]
@@ -62,20 +62,26 @@ $$
 显然只有 $q_1 = q_2$，唯一性得证．
 
 > 本质上，带余除法就是**从数轴上的点 $a$ 出发，以 $b$ 为步进，移动至某个长度为 $|b|$ 半开半闭的目标区间内**．
+>
 > 1. 因为步长和区间长一致，所以可达，区间内存在落点；
 > 2. 因为区间半开半闭，区间内必然有且仅有一个落点．
+>
 :::
 
 :::important[推论]
+
 1. (**零**) 若 $a = 0$，则 $q = r = 0$．
 2. (**符号**) 在数轴上，从点 $a$ 出发，到达 $[0, |b|)$ 内．当 $b > 0$ 时，$q > 0$ 表示左移，$q < 0$ 表示右移．
+
    | $a$ | $b$ | $q$ |
    | --- | --- | --- |
    | $+$ | $+$ | $\ge 0$ |
    | $+$ | $-$ | $\le 0$ |
    | $-$ | $+$ | $-$ |
    | $-$ | $-$ | $+$ |
+
 3. (**折半**) 若 $a \ge b > 0$，则 $r < a / 2$，即 $r < \min(|b|, a / 2)$．
+
 :::
 
 :::tip[推论 3 的证明]
@@ -92,12 +98,14 @@ $$
 在 C/C++ 中，`a / b` 如何取整，取决于编译器的具体实现．\
 但从 [C99](https://en.cppreference.com/w/c/language/operator_arithmetic) 和 [C++11](https://en.cppreference.com/w/cpp/language/operator_arithmetic) 起，标准规定：**商向零取整**，即直接舍弃小数部分．\
 `a % b` 被定义为 `a - a / b`，因此取模结果的符号取决于 `/` 如何取整．以下断言保证为真：
+
 ```c
 assert(5 % 3 == 2);
 assert(5 % -3 == 2);
 assert(-5 % 3 == -2);
 assert(-5 % -3 == -2);
 ```
+
 形式化地，商向零取整的带余除法 $a = qb + r$ 中，$r$ 的目标区间不是 $[0, |b|)$，而是
 $$
 r \in
@@ -113,6 +121,7 @@ $$
 :::
 
 :::important[推论]
+
 1. (**零**) $n \mid 0$ 对 $n \ne 0$ 恒成立，即 **$0$ 的因数是所有非零整数**．
 2. (**幺**) $n \mid 1$ 当且仅当 $n = \pm 1$，即 **$1$ 的因数只有 $\pm 1$**．
 3. (**凡因**) $\pm 1 \mid n$ 和 $\pm n \mid n$ 都恒成立，即**平凡因数**．
@@ -123,6 +132,7 @@ $$
 8. (**消去**) 若 $k \ne 0$，则 $ka \mid kb$ 等价于 $a \mid b$．
 9. (**分解**) 若 $ab \mid m$，则 $a \mid m$ 且 $b \mid m$．
 10. (**组合**) 若 $e \mid a$ 且 $e \mid b$，则 $e \mid (ka + lb)$，其中 $k, l \in \mathbb Z$．
+
 :::
 
 :::tip[推论 5 的证明]
@@ -137,11 +147,14 @@ $$
 :::note[gcd 和 lcm]
 今有 $a, b \in \mathbb Z$，$a^2 + b^2 > 0$．记 $D$ 为 $a$ 和 $b$ 的正公因数集，$M$ 为 $a$ 和 $b$ 的正公倍数集．\
 我们称 $a$ 和 $b$ 的**最大 (正) 公因数**为 $\gcd(a, b) = \max D$，**最小 (正) 公倍数** $\text{lcm}(a, b) = \min M$．
+
 1. 由于 $1 \in D$，故 $D \ne \empty$，又因为 $d \le |a|$ 且 $d \le |b|$，因此 $D$ 是有限集，$\gcd(a, b)$ 必然存在；
 2. 由于 $|ab| \in M$，故 $M \ne \empty$，又因为 $M \sub \mathbb N$，且 $(\mathbb N, \le)$ 是良序的，因此 $\text{lcm}(a, b)$ 必然存在．
+
 :::
 
 :::important[gcd 的推论]
+
 1. (**零**) $\gcd(0, n) = n$，其中 $n \ne 0$．
 2. (**幺**) $\gcd(1, n) = 1$．
 3. (**对称**) $\gcd(a, b) = \gcd(b, a)$．
@@ -149,6 +162,7 @@ $$
 5. (**线性**) 若 $k \in \mathbb Z$，$k \ne 0$，则 $\gcd(ka, kb) = |k|\gcd(a, b)$．
 6. (**幂性**) 若 $k \in \mathbb Z$，则 $\gcd(a^k, b^k) = \gcd(a, b)^k$．
 7. (**最近公共祖先**) $e \mid \gcd(a, b)$，当且仅当 $e \mid a$ 且 $e \mid b$．
+
 :::
 
 :::tip[推论 5 的证明]
@@ -161,9 +175,11 @@ $$
 因此 $|\gcd(ka, kb)| = |k \gcd(a, b)|$，即 $\gcd(ka, kb) = |k| \gcd(a, b)$．
 
 另一种证明方法是相互整除．
+
 1. 先证 $k \gcd(a, b) \mid \gcd(ka, kb)$：由 Bézout 推论，只需证 $k\gcd(a, b) \mid ka$，消去 $k$ 后显然成立．
 2. 再证 $\gcd(ka, kb) \mid k \gcd(a, b)$：欲将其转化为 $\gcd(ka, kb) / k \mid \gcd(a, b)$，需 $k \mid \gcd(ka, kb)$，而这是显然的，因为 $k \mid ka$，随后要证 $\gcd(ka, kb) / k \mid a$，两边同乘以 $k$ 显然成立．
 因此 $|\gcd(ka, kb)| = |k \gcd(a, b)|$，即 $\gcd(ka, kb) = |k| \gcd(a, b)$．
+
 :::
 
 :::tip[推论 6 的证明]
@@ -184,6 +200,7 @@ $$
 :::
 
 :::important[推论]
+
 1. (**零**) 与 $0$ 互素的整数只有 $\pm 1$．
 2. (**幺**) $\pm 1$ 与所有整数互素．
 3. (**互素化**) 记 $d = \gcd(a, b)$，则 $\dfrac{a}{d} \perp \dfrac{b}{d}$．
@@ -195,6 +212,7 @@ $$
 9. (**一般乘积**) 记 $d = \gcd(a, b)$，则 $a \mid m$ 且 $b \mid m$ 蕴含 $\left. \dfrac{ab}{d} \,\middle|\, m \right.$，即 $\text{lcm}(a, b) \mid m$．
 10. (**互素空间的交**) 若 $a \perp b$，则 $a \mathbb Z \cap b \mathbb Z = ab \mathbb Z$．
 11. (**一般空间的交**) 记 $d = \gcd(a, b)$，则 $a \mathbb Z \cap b \mathbb Z = \dfrac{ab}{d} \, \mathbb Z = \text{lcm}(a, b) \,\mathbb Z$．
+
 :::
 
 :::tip[推论 3 的证明]
@@ -248,7 +266,7 @@ $$
 $$
 \begin{aligned}
 (kb)a + lm &= 1 \\
-(ka)b + lm &= 1 
+(ka)b + lm &= 1
 \end{aligned}
 $$
 于是 $\gcd(a, m) = 1$ 且 $\gcd(b, m) = 1$，因此 $a \perp m$ 且 $b \perp m$．
@@ -279,8 +297,10 @@ $$
 :::
 
 :::important[lcm 的推论]
+
 1. 若 $\gcd(a, b) = 1$，则 $\text{lcm}(a, b) = |ab|$．
 2. $\gcd(a, b) \,\text{lcm}(a, b) = |ab|$．
+
 :::
 
 :::tip[推论 1 的证明]
@@ -368,11 +388,13 @@ $r_1$ 和 $r_2$ 都可以表示成 $a$ 和 $b$ 的线性组合，归纳得知 $r
 
 :::tip[循环群的子群]
 循环群 $G = \langle g \rangle$ 的子群 $H$ 必为循环群．设 $I = \{k \in \mathbb Z : g^k \in H\}$，则 $H = \{g^k \in G : k \in I\}$．
+
 1. 若 $H$ 是平凡群，显然也是循环群；
 2. 否则取 $d = \gcd\,I$，由 Bézout 定理可知，$d$ 可被 $I$ 中所有数的线性组合表示．\
    因为 $H$ 的封闭性，所以 $d \in I$．我们将证明 $H = \langle g^d \rangle$：一方面 $\forall\, k \in I$，$d \mid k$，故 $I \sub d \mathbb Z$；\
    另一方面 $H$ 是群，容易得知 $I$ 是 $\mathbb Z$ 的加法子群，又因为 $d \in I$，故 $d \mathbb Z \sub I$．\
-   所以 $I = d \mathbb Z$，$H = \{g^{dk} \in G : {dk} \in d \mathbb Z\} = \{(g^d)^k \in G : k \in \mathbb Z\} = \langle g^d \rangle$． 
+   所以 $I = d \mathbb Z$，$H = \{g^{dk} \in G : {dk} \in d \mathbb Z\} = \{(g^d)^k \in G : k \in \mathbb Z\} = \langle g^d \rangle$．
+
 :::
 
 :::note[扩展 Euclid 算法]
@@ -499,10 +521,12 @@ $$
 :::
 
 :::important[推论]
+
 1. $\mathbb N$ 被分为三类：$1$，素数，合数．
 2. 合数的最小非平凡因数是素数．
 3. 素数有无穷多个．
 4. (**素性**，**Euclid 整除定理**) 设 $a, b \in \mathbb Z$，$p$ 是素数，若 $p \mid ab$，则 $p \mid a$ 或 $p \mid b$．
+
 :::
 
 :::tip[推论 2 的证明]
@@ -564,6 +588,7 @@ $$
 :::
 
 :::important[推论]
+
 1. 同余是**等价关系**：
    - 自反性：$a \equiv a \pmod m$；
    - 对称性：若 $a \equiv b \pmod m$，则 $b \equiv a \pmod m$；
@@ -575,6 +600,7 @@ $$
 4. **模数因数**：若 $a \equiv b \pmod {km}$，则 $a \equiv b \pmod m$．
 5. **互素消去**：若 $ka \equiv kb \pmod m$，且 $k \perp m$，则 $a \equiv b \pmod m$．
 6. **一般消去**：若 $ka \equiv kb \pmod m$，则 $a \equiv b \pmod{\dfrac{m}{\gcd(k, m)}}$．
+
 :::
 
 :::note[乘法逆元]
@@ -628,8 +654,10 @@ $$
 [r]_m = r + m \mathbb Z
 $$
 模 $m$ 同余关系是等价关系，因此模 $m$ 同余类就是模 $m$ 同余关系的**等价类**：
+
 1. $[a]_m = [b]_m$ 当且仅当 $a \equiv b \pmod m$．
 2. 要么 $[a]_m = [b]_m$，要么 $[a]_m \cap [b]_m = \empty$．
+
 :::
 
 :::tip[$\mathbb Z / m \mathbb Z$]
@@ -673,6 +701,7 @@ $$
 :::
 
 :::important[形形色色的环]
+
 1. **幺环**：$(R, \cdot)$ 是幺半群，其幺元作为环的**幺元** $1$．
 2. **交换环**：$(R, \cdot)$ 是交换群．
 3. **零环**：$(\{0\}, +, \cdot)$，其中 $0$ 是加法幺元．
@@ -707,16 +736,19 @@ $$
     (R^{\times}, \cdot)
     $$
     构成群，称作幺环 $(R, +, \cdot)$ 的乘法群/单位群，记作 $(R, +, \cdot)^{\times}$．
+
 :::
 
 ## $\mathbb Z / m \mathbb Z$
 
 :::note[$\mathbb Z / m \mathbb Z$ 的结构]
+
 1. $\mathbb Z / m \mathbb Z$ 是零环，当且仅当 $m = 1$．
 2. 当 $m > 1$ 时，$\mathbb Z / m \mathbb Z$ 是交换幺环，幺元是 $[1]_m$．
 3. $[r]_m$ 在 $\mathbb Z / m \mathbb Z$ 可逆，当且仅当 $r \perp m$，此时 $([r]_m)^{-1} = [r^{-1}]_m$．
 4. 若 $m$ 是合数，设其非平凡因数是 $d$，则所有的 $[d]_m$ 都是零因子，其他非零元素 $[r]_m$ 均可逆．
 5. 若 $m$ 是素数，则不存在零因子，且非零元素均可逆，此时 $\mathbb Z / m \mathbb Z$ 是域．
+
 :::
 
 :::important[$\mathbb Z / m \mathbb Z$ 的分解]
@@ -863,9 +895,11 @@ $$
 ## $(\mathbb Z / m \mathbb Z)^\times$
 
 :::note[$(\mathbb Z / m \mathbb Z)^\times$]
+
 1. $(\mathbb Z / m \mathbb Z, \cdot)$ 仅仅是交换幺半群，因为元素不一定都可逆，比如 $[0]_m$，$[a]_m$ ($a$ 与 $m$ 不互素)．
 2. **模 $m$ 乘法群** $(\mathbb Z / m \mathbb Z)^\times$ 是交换群，所有元素均可逆．
 3. $(\mathbb Z / p \mathbb Z)^\times$ 是循环群，即 $(\mathbb Z / p \mathbb Z)^\times \cong C_{p-1}$，$p$ 是素数．
+
 :::
 
 :::important[$(\mathbb Z / m \mathbb Z)^\times$ 的形式]
@@ -891,6 +925,7 @@ $$
 | --- | -- | -- | -- | -- | -- | -- |
 |  1  |  1 | 29 | 13 |  5 | 25 | 17 |
 |  3  | 19 | 11 | 31 | 23 |  7 | 35 |
+
 :::
 
 :::note[$(\mathbb Z / m \mathbb Z)^\times$ 的阶数]
@@ -904,12 +939,14 @@ $$
 :::
 
 :::important[推论]
+
 1. $\varphi(1) = 1$，此时 $(\mathbb Z / m \mathbb Z)^\times$ 是平凡群，仅含 $[0]_m$．
 2. 当 $p$ 是素数时，$\varphi(p) = p - 1$．
 3. 当 $p$ 是素数时，$\varphi(p^k) = p^k - p^{k-1} = p^k \Big(1 - \dfrac{1}{p}\Big)$．
 4. 当 $m \perp n$ 时，$\varphi(mn) = \varphi(m) \varphi(n)$．
 5. $\varphi(n) = n \displaystyle\prod_{p \mid n} \Big(1 - \dfrac{1}{p}\Big)$，$n > 1$，$p$ 是素数．
 6. $\displaystyle\sum_{d \mid n} \varphi(d) = n$，$n \in \mathbb N$．
+
 :::
 
 :::tip[推论 2 的证明]
@@ -935,7 +972,7 @@ $$
 $m \perp n$，因此对 $(\mathbb Z / mn \mathbb Z)^{\times}$ 进行分解
 $$
 \begin{aligned}
-(\mathbb Z / mn \mathbb Z)^{\times} &\cong (\mathbb Z / m \mathbb Z)^{\times} \times (\mathbb Z / n \mathbb Z)^{\times} \\ 
+(\mathbb Z / mn \mathbb Z)^{\times} &\cong (\mathbb Z / m \mathbb Z)^{\times} \times (\mathbb Z / n \mathbb Z)^{\times} \\
 \left|(\mathbb Z / mn \mathbb Z)^{\times}\right| &= \left|(\mathbb Z / m \mathbb Z)^{\times}\right| \cdot \left|(\mathbb Z / n \mathbb Z)^{\times}\right| \\
 \varphi(mn) &= \varphi(m) \varphi(n)
 \end{aligned}
@@ -955,6 +992,7 @@ $p$ 是素数．
 
 :::tip[推论 6 的证明]
 先回顾循环群 $G$ 的性质：
+
 1. 对于所有的 $d \mid |G|$，总存在唯一的 $d$ 阶子群；
 2. 循环群的子群仍是循环群；
 3. 恰有 $\phi(|G|)$ 个生成元．
@@ -984,9 +1022,11 @@ $$
 :::
 
 :::important[结论]
+
 1. $a^n \equiv 1 \pmod m$，当且仅当 $\text{ord}_m(a) \mid n$，其中 $m > 1$，$0 \le a < m$，$\gcd(a, m) = 1$．
 2. (**Euler 定理**) $a^{\varphi(m)} \equiv 1 \pmod m$，其中 $m > 1$，$a \in \mathbb Z$，$\gcd(a, m) = 1$．
 3. (**Fermat 小定理**) $a^{p-1} \equiv 1 \pmod p$，其中 $p$ 是素数，$p > 1$，$a \in \mathbb Z$，$p \nmid a$．
+
 > 感受 Euler 定理：在 $(\mathbb Z / 10 \mathbb Z)^{\times} = \{[1]_m, [3]_m, [7]_m, [9]_m\}$ 中，
 > $$
 > 1^4 \equiv 3^4 \equiv 7^4 \equiv 9^4 \equiv 1 \pmod{10}
@@ -1010,7 +1050,9 @@ $$
 :::
 
 :::important[性质]
+
 1. 模 $m$ 的原根存在，当且仅当 $(\mathbb Z / m \mathbb Z)^\times$ 是循环群，此时 $[g]_m$ 是循环群 $(\mathbb Z / m \mathbb Z)^\times$ 的生成元．
+
 :::
 
 ## $(\mathbb Z / p \mathbb Z)^\times$
@@ -1024,6 +1066,7 @@ f: (\mathbb Z / p \mathbb Z)^\times &\rightarrow (\mathbb Z / p \mathbb Z)^\time
 \end{aligned}
 $$
 是双射．此时分两种情况：
+
 1. $a^{-1} \not\equiv a \pmod p$；
 2. $a^{-1} \equiv a \pmod p$，即 $a^2 \equiv 1 \pmod p$，当且仅当 $a \equiv \pm 1 \pmod p$．
 
@@ -1091,6 +1134,7 @@ $$
 :::
 
 :::tip[初探 $\mathbb{QR}_p$]
+
 1. $1$ 总是 $\mathbf{QR}$．
 2. $\mathbb{QR}_p$ 在 $(\mathbb Z / p \mathbb Z)^\times$ 上对称分布．
    > 设素数 $p > 2$，$p \nmid a$，因为 $(p - b)^2 \equiv b^2 \pmod p$ 总成立，所以方程
@@ -1108,6 +1152,7 @@ $$
    $$
    \mathbb{QR}_p = \{[1^2]_p, [2^2]_p, \cdots, [((p - 1) / 2)^2]_p\}
    $$
+
 :::
 
 :::note[Legendre 符号]
@@ -1148,6 +1193,7 @@ $$
 :::
 
 :::tip[再探 $\mathbb{QR}_p$]
+
 1. $\mathbb{QR}_p$ 在乘法上构成 $(\mathbb Z / p \mathbb Z)^\times$ 的子群．
 2. 容易验证
    $$
@@ -1163,6 +1209,7 @@ $$
    |\mathbb{QR}_p| &= \dfrac{|(\mathbb Z / p \mathbb Z)^\times|}{|\ker \varphi|} = \dfrac{p - 1}{2}
    \end{aligned}
    $$
+
 :::
 
 :::note[Euler 准则]
