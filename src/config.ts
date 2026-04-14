@@ -8,16 +8,16 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "shy-blog",
+	title: "arishi",
 	subtitle: "chmod 166 heart",
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {
-		hue: 300, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+		hue: 285, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
 	},
 	banner: {
 		enable: true,
-		src: "assets/images/shy-banner.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: "assets/images/banner.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: true, // Display the credit text of the banner image
@@ -53,9 +53,9 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/shy-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Shy_Vector",
-	bio: "the end of this world, and the girl who crossed the moon's oceans.",
+	avatar: "assets/images/purini-512.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "Arishimu",
+	bio: "夢/あるいは在りし日の",
 	links: [
 		{
 			name: "Bilibili",
@@ -67,7 +67,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/shy-vector",
+			url: "https://github.com/arishimu",
 		},
 		{
 			name: "X",
@@ -77,7 +77,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Steam",
 			icon: "fa6-brands:steam",
-			url: "https://steamcommunity.com/id/Shy_Vector/",
+			url: "https://steamcommunity.com/id/arishimu/",
 		},
 	],
 };

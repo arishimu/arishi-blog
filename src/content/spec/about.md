@@ -1,5 +1,5 @@
 # About
-shy-blog 基于 [Astro](https://astro.build/)，运用 [Fuwari](https://github.com/saicaca/fuwari) 主题.
+arishi-blog 基于 [Astro](https://astro.build/)，运用 [Fuwari](https://github.com/saicaca/fuwari) 主题.
 
 ::github{repo="saicaca/fuwari"}
 
